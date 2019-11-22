@@ -37,25 +37,28 @@ int A::countclasses = 0;
 class IInterface
 {
 public:
-	vector<A> allclass;
-	vector<A>::iterator iterator;
+	vector<A *> allclass;
+	
 	IInterface() {
 		cout << "IK\n";
 	}
 	~IInterface() {
 		
-		for (iterator = allclass.begin(); iterator != allclass.end(); ++iterator) {
-			cout << "Delete all classes";
+		for (int i = 0; i < allclass.size();i++) {
+			cout << "Delete class at " << allclass.at(i)<<"\n";
+			delete allclass.at(i);
 		}
+		cout << sizeof(allclass);
 		cout << "ID\n";
 	}
 	void create_new_class(int num) {
 		A *a = new A();
-		allclass.push_back(*a);
+		cout << a;
+		allclass.push_back(a);
 		a->setc(num);
 		cout << a->getc() << endl;
 		a->ikr();
-		delete a;
+		//delete a;
 	}
 };
 
